@@ -2,7 +2,7 @@ require_relative 'config/environment'
 
 class App < Sinatra::Base
   configure do
-    enable :sessions unless test?
+    enable :sessions unless test?  #? Why test here?
     set :session_secret, "secret"
   end
 
@@ -20,6 +20,8 @@ class App < Sinatra::Base
 
   get '/set' do
     # set the :foo key of the session hash equal to 'hello' here!
+    @session=session #store the session hash as an instance variable so the same session hash is accessable to all methods
+    @session[:foo]="hello" #set foo to hello, like it says
     if session[:foo] == 'hello'
       redirect '/fetch'
     else
