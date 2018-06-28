@@ -20,8 +20,7 @@ class App < Sinatra::Base
 
   get '/set' do
     # set the :foo key of the session hash equal to 'hello' here!
-    @session=session #store the session hash as an instance variable so the same session hash is accessable to all methods
-    @session[:foo]="hello" #set foo to hello, like it says
+    session[:foo]="hello" #set foo to hello, like it says, guess we don't have to set it to an instance variable?
     if session[:foo] == 'hello'
       redirect '/fetch'
     else
@@ -39,7 +38,7 @@ class App < Sinatra::Base
 
   get '/set_session' do
     #set session id here
-
+    session[:id]=1
     if session[:id] == 1
       # "Session ID set. It's currently set to #{session[:id]}."
       redirect '/fetch_session_id'
